@@ -1,11 +1,10 @@
+import React from "react";
+
+import Characters from "./components/Characters";
 import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Cloudinfo Marvel.</h1>
-    </div>
-  );
+  return <Characters />;
 }
 
 export default App;
