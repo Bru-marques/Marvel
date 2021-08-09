@@ -1,0 +1,10 @@
+.characterArea {
+  display: flex;
+  flex-wrap: wrap;
+  width: 30%;
+  height: auto;
+}
+
+.img {
+  max-width: 100%;
+}

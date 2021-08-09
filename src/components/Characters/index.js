@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import api from "../../services/marvelApi";
+import "./style.css";
 
 const Characters = () => {
   const [characters, setCharacters] = useState([]);
@@ -10,12 +11,26 @@ const Characters = () => {
       .get()
       .then((response) => {
         setCharacters(response.data.data.results);
-        console.log(response.data.data.results);
       })
       .catch((err) => console.log(err));
   }, []);
-
-  console.log("segundo", characters);
-  return <div>hi</div>;
+  console.log(characters);
+  return (
+    <div>
+      <ul>
+        {characters.map((character) => {
+          return (
+            <li key={character.id} className="characterArea">
+              <img
+                src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                alt={`${character.name} cover`}
+              />
+              <span className="name">{character.name}</span>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 };
 export default Characters;
