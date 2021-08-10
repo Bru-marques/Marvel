@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import api from "../../services/marvelApi";
+import api from "../../services/comicsApi";
 import "./style.css";
 
 const Comics = () => {
   const [comics, setComics] = useState([]);
-  //Fetch data from marvelApi and change the state
   useEffect(() => {
     api
       .get()
@@ -22,12 +21,14 @@ const Comics = () => {
         return (
           <li key={comic.id} className="characterItem">
             <img
-              className="characterArea--img"
+              className="characterAreaImg"
               src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
               alt={`${comic.name} cover`}
             />
-            <div className="characterArea--nameArea">
-              <span className="characterArea--name">{comic.title}</span>
+            <div className="characterAreaNameArea">
+              <span className="characterAreaName">
+                {comic.title} lançado em {comic.dates[1].date}
+              </span>
             </div>
           </li>
         );
