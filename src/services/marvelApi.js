@@ -7,7 +7,7 @@ const timeStamp = Number(new Date());
 const hash = md5(timeStamp + privateKey + publicKey);
 
 const api = axios.create({
-  baseURL: "http://gateway.marvel.com/v1/public/characters?",
+  baseURL: "http://gateway.marvel.com/v1/public/comics?",
   params: {
     ts: timeStamp,
     apikey: publicKey,

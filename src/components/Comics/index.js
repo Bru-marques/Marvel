@@ -3,31 +3,31 @@ import React, { useEffect, useState } from "react";
 import api from "../../services/marvelApi";
 import "./style.css";
 
-const Characters = () => {
-  const [characters, setCharacters] = useState([]);
+const Comics = () => {
+  const [comics, setComics] = useState([]);
   //Fetch data from marvelApi and change the state
   useEffect(() => {
     api
       .get()
       .then((response) => {
-        setCharacters(response.data.data.results);
+        setComics(response.data.data.results);
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log(characters);
+  console.log(comics);
 
   return (
     <ul className="characterArea">
-      {characters.map((character) => {
+      {comics.map((comic) => {
         return (
-          <li key={character.id} className="characterItem">
+          <li key={comic.id} className="characterItem">
             <img
               className="characterArea--img"
-              src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-              alt={`${character.name} cover`}
+              src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+              alt={`${comic.name} cover`}
             />
             <div className="characterArea--nameArea">
-              <span className="characterArea--name">{character.name}</span>
+              <span className="characterArea--name">{comic.title}</span>
             </div>
           </li>
         );
@@ -35,4 +35,4 @@ const Characters = () => {
     </ul>
   );
 };
-export default Characters;
+export default Comics;

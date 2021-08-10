@@ -1,7 +1,7 @@
 import React from "react";
 
 import Header from "./components/Header";
-import Characters from "./components/Characters";
+import Comics from "./components/Comics";
 import "./App.css";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <>
       <Header />
       <section className="listContainer">
-        <Characters />
+        <Comics />
       </section>
     </>
   );
