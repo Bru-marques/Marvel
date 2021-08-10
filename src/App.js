@@ -8,7 +8,9 @@ function App() {
   return (
     <>
       <Header />
-      <Characters />
+      <section className="listContainer">
+        <Characters />
+      </section>
     </>
   );
 }

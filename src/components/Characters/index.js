@@ -15,22 +15,24 @@ const Characters = () => {
       .catch((err) => console.log(err));
   }, []);
   console.log(characters);
+
   return (
-    <div>
-      <ul>
-        {characters.map((character) => {
-          return (
-            <li key={character.id} className="characterArea">
-              <img
-                src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                alt={`${character.name} cover`}
-              />
-              <span className="name">{character.name}</span>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <ul className="characterArea">
+      {characters.map((character) => {
+        return (
+          <li key={character.id} className="characterItem">
+            <img
+              className="characterArea--img"
+              src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+              alt={`${character.name} cover`}
+            />
+            <div className="characterArea--nameArea">
+              <span className="characterArea--name">{character.name}</span>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
   );
 };
 export default Characters;

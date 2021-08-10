@@ -8,3 +8,12 @@ body {
   background-color: #111;
   font-family: "Roboto", sans-serif;
 }
+
+.listContainer {
+  margin: 150px 100px 100px 100px;
+  display: flex;
+}
+
+ul li {
+  list-style: none;
+}
