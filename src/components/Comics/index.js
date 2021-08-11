@@ -26,9 +26,7 @@ const Comics = () => {
               alt={`${comic.name} cover`}
             />
             <div className="characterAreaNameArea">
-              <span className="characterAreaName">
-                {comic.title} lançado em {comic.dates[1].date}
-              </span>
+              <span className="characterAreaName">{comic.title}</span>
             </div>
           </li>
         );

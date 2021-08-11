@@ -3,7 +3,13 @@
 Description:
 
 [X] Marvel API request;
+
 [X] Show comics at home page as the layout;
-[] Comics ordered by date;
-[] Search input by character; - on progress
-[] Pagination (not required);
+
+[x] Search input by character;
+
+[] Comics ordered by date; --in progress
+
+[] Display input comics images; --in progress
+
+[] Pagination (not required); --to do
