@@ -6,7 +6,7 @@ import api from "../../services/charactersApi";
 import Characters from "../Characters";
 import Comics from "../Comics";
 
-const Header = () => {
+const Home = () => {
   const [characters, setCharacters] = useState("");
   const [charSearch, setCharSearch] = useState(characters);
   const [searchResults, setSearchResults] = useState([]);
@@ -77,4 +77,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Home;

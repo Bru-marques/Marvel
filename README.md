@@ -8,6 +8,6 @@ Description:
 
 [x] Search input by the 100 first character;
 
-[] Comics ordered by date; --in progress
+[X] Sort comics
 
-[] Pagination (not required); --to do
+[X] Pagination (not required)

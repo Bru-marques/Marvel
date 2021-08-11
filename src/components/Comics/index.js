@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 
 import api from "../../services/comicsApi";
 import "./style.css";
 
 const Comics = () => {
-  const [comics, setComics] = useState([]);
+  const [comics, setComics] = useState([].slice(0, 100));
+  const [pageNumber, setPageNumber] = useState(0);
 
   //get data
   useEffect(() => {
@@ -16,43 +18,57 @@ const Comics = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  //working on sort comics
-  const sortedComic = () => {
-    comics.map((sortedComic) => {
-      const date = sortedComic.dates[0].date;
+  //sort comics
+  function filterDate(a, b) {
+    return b.id - a.id;
+  }
 
-      const year = date.slice(0, 4);
-      const month = date.slice(5, 7);
-      const day = date.slice(8, 10);
+  let x = comics.sort(filterDate);
+  console.log("filtro", x);
 
-      const newDate = Number(year + month + day);
+  //pagination
+  const comicsPerPage = 10;
+  const pagesVisited = pageNumber * comicsPerPage;
 
-      console.log(newDate);
-
-      sortedComic.sort = (a, b) => {
-        return a.newDate > b.newDate ? -1 : 1;
-      };
+  const displayComics = comics
+    .slice(pagesVisited, pagesVisited + comicsPerPage)
+    .map((comic) => {
+      return (
+        <li key={comic.id} className="characterItem">
+          <img
+            className="characterAreaImg"
+            src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+            alt={`${comic.name} cover`}
+          />
+          <div className="characterAreaNameArea">
+            <span className="characterAreaName">{comic.title}</span>
+          </div>
+        </li>
+      );
     });
+
+  const pageCount = Math.ceil(comics.length / comicsPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
   };
-  console.log(sortedComic);
 
   return (
-    <ul className="characterArea">
-      {comics.map((comic) => {
-        return (
-          <li key={comic.id} className="characterItem">
-            <img
-              className="characterAreaImg"
-              src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-              alt={`${comic.name} cover`}
-            />
-            <div className="characterAreaNameArea">
-              <span className="characterAreaName">{comic.title}</span>
-            </div>
-          </li>
-        );
-      })}
-    </ul>
+    <div className="homeContainer">
+      <ul className="characterArea">{displayComics}</ul>
+      <div className="paginationArea">
+        <ReactPaginate
+          previousLabel={"Previous"}
+          nextLabel={"Next"}
+          pageCount={pageCount}
+          onPageChange={changePage}
+          containerClassName={"paginationButton"}
+          previousLinkClassName={"previousButton"}
+          nextLinkClassName={"nextButton"}
+          disabledClassName={"paginationDisabled"}
+          activeClassName={"paginationActive"}
+        />
+      </div>
+    </div>
   );
 };
 export default Comics;
