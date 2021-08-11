@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import marvel_logo from "../../assets/marvel_logo.png";
-//import SearchInput from "../SearchInput";
 
 import "./style.css";
 import api from "../../services/charactersApi";
@@ -23,8 +22,7 @@ const Header = () => {
     };
   }, [characters]);
 
-  //console.log(searchResults);
-
+  //get data
   useEffect(() => {
     const search = () => {
       api
@@ -39,19 +37,7 @@ const Header = () => {
     }
   }, [charSearch]);
 
-  //auxiliary function to map the character
-  /* const renderResults = searchResults.forEach((searchResult) => {
-    if (charSearch === searchResult.name) {
-      return (
-        <div key={searchResult.id}>
-          <ul>
-            <li>{searchResult.comics.items.name}</li>
-          </ul>
-        </div>
-      );
-    }
-  });*/
-
+  // filter the data input and api
   const filteredComics = !!charSearch
     ? searchResults.filter((result) => {
         return result.name.toLowerCase().includes(charSearch.toLowerCase());
@@ -61,7 +47,8 @@ const Header = () => {
   const handleOnChange = (e) => {
     setCharacters(e.target.value);
   };
-  console.log(filteredComics);
+
+  //render components
   return (
     <>
       <div className="headerArea">
@@ -79,6 +66,7 @@ const Header = () => {
           />
         </form>
       </div>
+
       <section className="listContainer">
         {filteredComics.length > 0 && (
           <Characters comics={filteredComics[0].comics.items} />

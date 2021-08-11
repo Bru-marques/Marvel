@@ -1,4 +1,5 @@
 import "../Comics/style.css";
+import cover from "../../assets/cover.jpg";
 
 const Characters = ({ comics }) => {
   return (
@@ -6,7 +7,13 @@ const Characters = ({ comics }) => {
       {comics.map((comic) => {
         return (
           <li key={`${comic.resourceURI}`} className="characterItem">
-            <div>
+            {/*temp img*/}
+            <img
+              className="characterAreaImg"
+              src={cover}
+              alt={`${comic.name} cover`}
+            />
+            <div className="characterAreaNameArea">
               <span className="characterAreaName">{comic.name}</span>
             </div>
           </li>
@@ -16,8 +23,3 @@ const Characters = ({ comics }) => {
   );
 };
 export default Characters;
-/*<img
-              className="characterAreaImg"
-              src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-              alt={`${comic.name} cover`}
-            />*/

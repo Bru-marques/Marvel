@@ -5,6 +5,8 @@ import "./style.css";
 
 const Comics = () => {
   const [comics, setComics] = useState([]);
+
+  //get data
   useEffect(() => {
     api
       .get()
