@@ -15,7 +15,26 @@ const Comics = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log(comics);
+
+  //working on sort comics
+  const sortedComic = () => {
+    comics.map((sortedComic) => {
+      const date = sortedComic.dates[0].date;
+
+      const year = date.slice(0, 4);
+      const month = date.slice(5, 7);
+      const day = date.slice(8, 10);
+
+      const newDate = Number(year + month + day);
+
+      console.log(newDate);
+
+      sortedComic.sort = (a, b) => {
+        return a.newDate > b.newDate ? -1 : 1;
+      };
+    });
+  };
+  console.log(sortedComic);
 
   return (
     <ul className="characterArea">
