@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import marvel_logo from "../../assets/marvel_logo.png";
 
-import "./style.css";
 import api from "../../services/charactersApi";
+
+import Header from "../Header";
 import Characters from "../Characters";
 import Comics from "../Comics";
 
@@ -51,21 +51,7 @@ const Home = () => {
   //render components
   return (
     <>
-      <div className="headerArea">
-        <div className="header">
-          <img src={marvel_logo} alt="Marvel logo" className="marvel_logo" />
-        </div>
-
-        <form className="searchInput">
-          <input
-            className="input"
-            type="search"
-            placeholder="character"
-            value={characters}
-            onChange={handleOnChange}
-          />
-        </form>
-      </div>
+      <Header characters={characters} handleOnChange={handleOnChange} />
 
       <section className="listContainer">
         {filteredComics.length > 0 && (

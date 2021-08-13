@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import ReactPaginate from "react-paginate";
+
+import Pagination from "../Pagination";
+import ComicsDisplay from "../ComicsDisplay";
+import Loader from "../Loader";
 
 import api from "../../services/comicsApi";
-import "./style.css";
 
 const Comics = () => {
   const [comics, setComics] = useState([].slice(0, 100));
@@ -23,8 +25,8 @@ const Comics = () => {
     return b.id - a.id;
   }
 
-  let x = comics.sort(filterDate);
-  console.log("filtro", x);
+  let sortedComics = comics.sort(filterDate);
+  console.log("filtro", sortedComics);
 
   //pagination
   const comicsPerPage = 10;
@@ -33,39 +35,24 @@ const Comics = () => {
   const displayComics = comics
     .slice(pagesVisited, pagesVisited + comicsPerPage)
     .map((comic) => {
+      const keyID = comic.id;
+      const cover = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
+      const info = comic.title;
       return (
-        <li key={comic.id} className="characterItem">
-          <img
-            className="characterAreaImg"
-            src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-            alt={`${comic.name} cover`}
-          />
-          <div className="characterAreaNameArea">
-            <span className="characterAreaName">{comic.title}</span>
-          </div>
-        </li>
+        <ComicsDisplay comic={comic} cover={cover} info={info} key={keyID} />
       );
     });
 
-  const pageCount = Math.ceil(comics.length / comicsPerPage);
-  const changePage = ({ selected }) => {
-    setPageNumber(selected);
-  };
-
   return (
     <div className="homeContainer">
-      <ul className="characterArea">{displayComics}</ul>
+      <ul className="characterArea">
+        {sortedComics.length <= 0 ? <Loader /> : displayComics}
+      </ul>
       <div className="paginationArea">
-        <ReactPaginate
-          previousLabel={"Previous"}
-          nextLabel={"Next"}
-          pageCount={pageCount}
-          onPageChange={changePage}
-          containerClassName={"paginationButton"}
-          previousLinkClassName={"previousButton"}
-          nextLinkClassName={"nextButton"}
-          disabledClassName={"paginationDisabled"}
-          activeClassName={"paginationActive"}
+        <Pagination
+          comics={comics}
+          comicsPerPage={comicsPerPage}
+          setPageNumber={setPageNumber}
         />
       </div>
     </div>

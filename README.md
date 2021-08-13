@@ -11,3 +11,15 @@ Description:
 [X] Sort comics
 
 [X] Pagination (not required)
+
+Component tree
+
+» App
+» » Home
+» » » Header
+» » » Comics
+» » » » Loader
+» » » » ComicsDisplay
+» » » » Pagination
+» » » Characters
+» » » » ComicsDisplay

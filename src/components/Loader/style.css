@@ -1,0 +1,38 @@
+.loaderArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+.loader {
+  height: 50px;
+  transform-origin: bottom center;
+  animation: rotate 3s linear infinite;
+}
+
+.circle {
+  background-color: var(--red);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: grow 1.5s linear infinite;
+  margin: -15px;
+}
+
+.circle:nth-child(2) {
+  background-color: var(--white);
+  animation-delay: 0.75s;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes grow {
+  50% {
+    transform: scale(1);
+  }
+}

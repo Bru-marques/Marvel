@@ -1,22 +1,14 @@
-import "../Comics/style.css";
 import cover from "../../assets/cover.jpg";
+import ComicsDisplay from "../ComicsDisplay";
 
 const Characters = ({ comics }) => {
   return (
     <ul className="characterArea">
       {comics.map((comic) => {
+        const info = comic.name;
+        const keyID = comic.id;
         return (
-          <li key={`${comic.resourceURI}`} className="characterItem">
-            {/*temp img*/}
-            <img
-              className="characterAreaImg"
-              src={cover}
-              alt={`${comic.name} cover`}
-            />
-            <div className="characterAreaNameArea">
-              <span className="characterAreaName">{comic.name}</span>
-            </div>
-          </li>
+          <ComicsDisplay comic={comic} cover={cover} info={info} key={keyID} />
         );
       })}
     </ul>

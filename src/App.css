@@ -4,7 +4,28 @@
   box-sizing: border-box;
 }
 
+:root {
+  --red: rgba(238, 49, 49, 0.9);
+  --black: #111;
+  --grey: #4e4e4e;
+  --white: #f5f5f5;
+}
+
 body {
-  background-color: #111;
+  background-color: var(--black);
   font-family: "Roboto", sans-serif;
+}
+
+.listContainer {
+  margin: 160px 100px 100px 100px;
+  display: flex;
+}
+
+ul li {
+  list-style: none;
+}
+
+.homeContainer {
+  display: flex;
+  flex-direction: column;
 }
